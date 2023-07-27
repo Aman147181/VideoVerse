@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import SearchResultCard from './SearchResultCard';
-const SearchResult = (props) => {
+import { mainContext } from '../App';
+const SearchResult = () => {
+  let { searchTerm } = useContext(mainContext);
   const [showItem, setShowItem] = useState([]);
-  const url = props.searchTerm==''||null?'https://youtube138.p.rapidapi.com/home/?hl=en&gl=US':`https://youtube138.p.rapidapi.com/search/?q=${props.searchTerm}&hl=en&gl=US`;
+  const url = searchTerm==''||null?'https://youtube138.p.rapidapi.com/home/?hl=en&gl=US':`https://youtube138.p.rapidapi.com/search/?q=${searchTerm}&hl=en&gl=US`;
   const options = {
     method: 'GET',
     headers: {
@@ -23,7 +25,7 @@ const SearchResult = (props) => {
     };
 
     fetchData();
-  }, [props.searchTerm]);
+  }, [searchTerm]);
 
   return (
     <div className="flex flex-row h-[calc(100%-56px)]">

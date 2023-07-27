@@ -1,13 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSun, faMoon, faSearch, faVideo } from "@fortawesome/free-solid-svg-icons";
-import React, { useState } from "react";
-const MainPage = (props) => {
+import React, { useState, useContext } from "react";
+import { mainContext } from '../App';
+const MainPage = () => {
+  let { searchTerm, setSearchTerm, setDarkMode, darkMode } = useContext(mainContext);
   const [typed, setTyped] = useState();
   return (
     <div className="flex h-[80px] items-center justify-center space-x-3 md:space-x-6 lg:space-x-10 px-4">
       <div className="flex justify-center items-center mx-2">
-        <button onClick={()=>props.setSearchTerm(null)}><FontAwesomeIcon icon={faVideo} size="2xl" color={props.darkMode ? 'rgb(143, 252, 255)' : 'rgb(14, 116, 144)'} /></button>
-        < button onClick={()=>window.location.reload()}><h1 className="ml-2 font-bold dark:text-purple-200 text-slate-700 text-2xl">VideoVerse</h1></button>
+        <button onClick={()=>setSearchTerm(null)}><FontAwesomeIcon icon={faVideo} size="2xl" color={darkMode ? 'rgb(143, 252, 255)' : 'rgb(14, 116, 144)'} /></button>
+        < button onClick={()=>setSearchTerm(null)}><h1 className="ml-2 font-bold dark:text-purple-200 text-slate-700 text-2xl">VideoVerse</h1></button>
       </div>
       
       <input
@@ -18,17 +20,17 @@ const MainPage = (props) => {
         placeholder="search videos... "
       ></input>
       <button
-        onClick={()=>props.setSearchTerm(typed)}
+        onClick={()=>setSearchTerm(typed)}
         className="p-3 px-5 text-xl font-bold text-white rounded-3xl dark:bg-purple-100 bg-cyan-700 ml-2 dark:text-slate-700"
       >
         <FontAwesomeIcon icon={faSearch} size="lg" />
       </button>
       <button
         onClick={() => {
-          props.setDarkMode(!props.darkMode);
+          setDarkMode(!darkMode);
         }}
       >
-        {props.darkMode ? (
+        {darkMode ? (
           <FontAwesomeIcon icon={faSun} size="2xl" color="white" />
         ) : (
           <FontAwesomeIcon icon={faMoon} size="2xl" />
