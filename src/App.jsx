@@ -7,13 +7,13 @@ import SearchResult from "./components/SearchResult";
 export const mainContext = createContext();
 function App() {
   
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
   const [searchTerm, setSearchTerm] = useState(null);
   return (
     <mainContext.Provider value={{darkMode, setDarkMode, searchTerm, setSearchTerm}}>
       <Router>
       <div className={darkMode ? "dark" : ""}>
-        <div className=" bg-purple-100 dark:bg-cyan-700 h-screen">
+        <div className=" bg-purple-100 dark:bg-cyan-950 h-screen">
         <MainPage /> 
         <SearchResult />
         </div>
